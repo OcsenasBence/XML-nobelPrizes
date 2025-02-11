@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:simpleType name="customDate">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([0-9]{4}-[0-9]{2}-[0-9]{2})?"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="categories">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="category" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="laureate" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="id" type="xs:string"/>
+                                        <xs:element name="fullName" type="xs:string"/>
+                                        <xs:element name="givenName" type="xs:string"/>
+                                        <xs:element name="familyName" type="xs:string"/>
+                                        <xs:element name="birthDate" type="customDate" />
+                                        <xs:element name="awardYear" type="xs:integer"/>
+                                        <xs:element name="motivation" type="xs:string"/>
+                                        <xs:element name="prizeAmount" type="xs:integer"/>
+                                        <xs:element name="affiliation" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="institution" maxOccurs="unbounded" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="name" type="xs:string"/>
+                                                                <xs:element name="city" type="xs:string" minOccurs="0"/>
+                                                                <xs:element name="country" type="xs:string" minOccurs="0"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="name" type="xs:string" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
